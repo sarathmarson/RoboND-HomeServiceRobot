@@ -50,10 +50,10 @@ int main( int argc, char** argv )
   marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 
   //adding position cordinates for pickup and drop locations:
-  pick.position.x = -1.5; // ## x cord of pick loc
-  pick.position.y = -2.5; // ## y cord of pick loc
-  dropit.position.x = -3.2; // ## x cord of drop loc
-  dropit.position.y = -5.6; // ## y cord of drop loc
+  pick.position.x = -3.5; // ## x cord of pick loc
+  pick.position.y = -5.5; // ## y cord of pick loc
+  dropit.position.x = -1.2; // ## x cord of drop loc
+  dropit.position.y = -1.6; // ## y cord of drop loc
   
   //adding subscriber comm:
   ros::Subscriber marker_sub = n.subscribe("/odom",1000,odomCallback);

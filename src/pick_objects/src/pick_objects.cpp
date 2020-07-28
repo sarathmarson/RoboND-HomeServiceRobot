@@ -61,7 +61,7 @@ int main(int argc, char** argv){
   dropit.target_pose.pose.orientation.w = 1.0;
 
    // Send the goal position and orientation for the robot to reach
-  ROS_INFO("Sending to the location for picking up object");
+  ROS_INFO("Sending to the location for dropping object");
   ac.sendGoal(dropit);
 
   // Wait an infinite time for the results

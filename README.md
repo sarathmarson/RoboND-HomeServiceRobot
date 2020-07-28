@@ -11,19 +11,21 @@ This is followed by creating a shellscript launch.sh file
 The commands in this file is executed by a single command:
 
 		chmod +x launch.sh
-        ./launch.sh
+		./launch.sh
         
 ## Installation of Packages:
 
 The following packages are installed using the link provided in the tutorial.
+
 	1.gmapping
-    2.turtlebot_teleop
-    3.turtlebot_rviz_launchers
-    4.turtlebot_gazebo
+	2.turtlebot_teleop
+	3.turtlebot_rviz_launchers
+	4.turtlebot_gazebo
 
 ## Creating Packages for pickup and addmarkers:
 
 Packages for picking virtual objects and marking them are created using the following command:
+
 		catkin_create_pkg <packagename>
   
 Required shell scripts are created as instructed in the tutorial. 

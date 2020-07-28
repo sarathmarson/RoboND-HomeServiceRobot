@@ -75,13 +75,16 @@ Add pick_object.cpp and add_markers.cpp nodes and edit them as instructed in the
 ## Mapping
 
    Simultaneous Localization and Mapping (SLAM) is used to generate the map of environment. This is a two dimensional grid map is produced using data obtained from laser sensors. The obtained map is as of given below:
-        
+
+![alt text](images/mapping.JPG)
         
 ## Localization
         
        
   Localization is performed using amcl(adaptive monte carlo localization) algorithm, where the particles converges to the actaul position of the robot as it navigates. The resampling of particles are based on the particle weights so that only the particles very near to the actual position of robot will survive.
-         
+ 
+ ![alt text](images/navigation.JPG)
+  
 ## Navigation
         
    We will be using the ROS Navigation stack, which is based on the Dijkstra's, a variant of the Uniform Cost Search algorithm, to plan our robot trajectory from start to goal position. The ROS navigation stack permits our robot to avoid any obstacle on its path by re-planning a new trajectory once our robot encounters them. 

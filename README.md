@@ -69,19 +69,47 @@ The following packages are installed using the link provided in the tutorial.
 Packages for picking virtual objects and marking them are created using the following command:
 
 		catkin_create_pkg <packagename>
-  
-Add pick_object.cpp and add_markers.cpp nodes and edit them as instructed in the tutorial.
 
+## Pick_objects:
+   
+   A pick up goal will be sent to the ROS navigation stack to pick up the virtual object (sphere) from the given location. Then, the robot travels to that partcular cordinate for picking up the object. A message is already stored in the program which displays the user that the robot has reached that particular position to pick up the found object.
+   
+   Similarly, a drop goal will be sent to the ROS navigation stack to drop the object at a partcular location. A drop of message will be then shown to user which acknowledges the arrival in the drop zone.
+   
+   On the other hand, an error message will be shown if the robot fails to reach pick/drop zones  
+
+Steps:
+ 1. Create pick_objects package using the catkin command (explained in the previous section)
+ 2. Add pick_object.cpp node and edit it as instructed in the tutorial.
+ 3. Edit CMakeLists.txt file to add directories, executables and target link libraries.
+ 4. Build the catkin ws.
+ 
+ ## Add_markers:
+ 
+   A sphere is modelled and it is defined as a virtual object in rviz. This virtual object appears as a marker in the pick up position. When the robot arrives at this location, a command is executed to delete the marker after 5 sec to indicate the picking up of object.
+   
+   Similarly at the drop of location, a command will be executed to add the marker after 5 sec of arrival. This indicates dropping of the virtual object at the drop of location.
+   
+   In both cases, a corresponding message will be shown to the user whether it succesfully performed the task . 
+ 
+ Steps:
+ 1. Create add_markers package using the catkin command (explained in the previous section)
+ 2. Add add_markers.cpp node and edit it as instructed in the tutorial.
+ 3. Edit CMakeLists.txt file to add directories, executables and target link libraries.
+ 4. Build the catkin ws.
+ 
+ 
 ## Mapping
 
    Simultaneous Localization and Mapping (SLAM) is used to generate the map of environment. This is a two dimensional grid map is produced using data obtained from laser sensors. The obtained map is as of given below:
 
 ![alt text](images/mapping.JPG)
+       
         
 ## Localization
         
        
-  Localization is performed using amcl(adaptive monte carlo localization) algorithm, where the particles converges to the actaul position of the robot as it navigates. The resampling of particles are based on the particle weights so that only the particles very near to the actual position of robot will survive.
+  Localization is performed using amcl(adaptive monte carlo localization) algorithm, where the particles converges to the actual position of the robot as it navigates. The resampling of particles are based on the particle weights so that only the particles very near to the actual position of robot will survive.
  
  ![alt text](images/navigation.JPG)
   

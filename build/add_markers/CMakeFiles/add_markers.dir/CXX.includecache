@@ -11,11 +11,11 @@ ros/ros.h
 -
 visualization_msgs/Marker.h
 -
-nav_msgs/Odometry.h
--
 geometry_msgs/Twist.h
 -
 geometry_msgs/Pose.h
+-
+nav_msgs/Odometry.h
 -
 
 /opt/ros/kinetic/include/geometry_msgs/Point.h

@@ -44,7 +44,7 @@ int main(int argc, char** argv){
   //end of coding part for sending the pickup message
   
   //add a little duration inorder to pick the virtual object
-  ros::Duration(5.0).sleep();
+  //ros::Duration(5.0).sleep();
   
   
   

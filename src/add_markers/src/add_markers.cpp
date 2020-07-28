@@ -47,12 +47,12 @@ int main( int argc, char** argv )
   ros::init(argc, argv, "add_markers");
   ros::NodeHandle n;
   ros::Rate r(1);
-  ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
+  marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 
   //adding position cordinates for pickup and drop locations:
-  pick.position.x = -0.6; // ## x cord of pick loc
-  pick.position.y = -6.8; // ## y cord of pick loc
-  dropit.position.x = -6.8; // ## x cord of drop loc
+  pick.position.x = -1.5; // ## x cord of pick loc
+  pick.position.y = -2.5; // ## y cord of pick loc
+  dropit.position.x = -3.2; // ## x cord of drop loc
   dropit.position.y = -5.6; // ## y cord of drop loc
   
   //adding subscriber comm:
@@ -77,9 +77,9 @@ int main( int argc, char** argv )
   marker.action = visualization_msgs::Marker::ADD;
   
   // Set the scale of the marker -- 1x1x1 here means 1m on a side
-  marker.scale.x = 1.0;
-  marker.scale.y = 1.0;
-  marker.scale.z = 1.0;
+  marker.scale.x = 0.25;
+  marker.scale.y = 0.25;
+  marker.scale.z = 0.25;
 
   // Set the color -- be sure to set alpha to something non-zero!
   marker.color.r = 0.0f;

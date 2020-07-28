@@ -60,19 +60,19 @@ The following packages are installed using the link provided in the tutorial.
 
    1. gmapping
    
-           With the gmapping_demo.launch file, we can easily perform SLAM and build a map of the environment with a robot equipped with laser range finder sensors or RGB-D cameras.
+         With the gmapping_demo.launch file, we can easily perform SLAM and build a map of the environment with a robot equipped with laser range finder sensors or RGB-D cameras.
            
    2. turtlebot_teleop
    
-           With the keyboard_teleop.launch file, we can manually control a robot using keyboard commands.
+         With the keyboard_teleop.launch file, we can manually control a robot using keyboard commands.
            
    3. turtlebot_rviz_launchers
    
-           With the view_navigation.launch file, we can load a preconfigured rviz workspace. We will save a lot of time by launching this file, because it will automatically load the robot model, trajectories, and map.
+         With the view_navigation.launch file, we can load a preconfigured rviz workspace. We will save a lot of time by launching this file, because it will automatically load the robot model, trajectories, and map.
            
    4. turtlebot_gazebo
    
-           With the turtlebot_world.launch we can deploy a turtlebot in a gazebo environment by linking the world file to it.
+         With the turtlebot_world.launch we can deploy a turtlebot in a gazebo environment by linking the world file to it.
 
 ## Creating Packages (pick_objects and add_markers):
 

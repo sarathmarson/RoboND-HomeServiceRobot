@@ -14,7 +14,8 @@ The algorithm is implemeted as follows:
 ## Initial Steps:
 
 Firstly, upgrade the system using the following command:
-	sudo apt-get update && apt-get upgrade
+
+		sudo apt-get update && apt-get upgrade
     
 ## Shell Scripts
    Create a 'scripts' folder in the src directory. This folder contains the following files:

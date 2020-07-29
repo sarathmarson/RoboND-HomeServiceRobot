@@ -26,7 +26,9 @@ int main(int argc, char** argv){
 
   // Define a position and orientation for the robot to reach
   pick.target_pose.pose.position.x = 1.0;
-  pick.target_pose.pose.orientation.w = 1.0;
+  pick.target_pose.pose.position.y = -5.0;
+  pick.target_pose.pose.orientation.z = 1.0;
+  pick.target_pose.pose.orientation.w = 0.0;
 
    // Send the goal position and orientation for the robot to reach
   ROS_INFO("Sending to the location for picking up object");
@@ -36,8 +38,11 @@ int main(int argc, char** argv){
   ac.waitForResult();
 
   // Check if the robot reached its goal
-  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
     ROS_INFO("Hooray, the base reached the location for picking up virtual object");
+    ros::Duration(5).sleep();
+    ROS_INFO("Hooray, the robot picked up");
+  	}
   else
     ROS_INFO("Oops!, The base failed to reach the location for picking up virtual object");
   
@@ -57,9 +62,11 @@ int main(int argc, char** argv){
   dropit.target_pose.header.stamp = ros::Time::now();
 
   // Define a position and orientation for the robot to reach
-  dropit.target_pose.pose.position.x = 1.0;
-  dropit.target_pose.pose.orientation.w = 1.0;
-
+  dropit.target_pose.pose.position.x = -5.0;
+  dropit.target_pose.pose.position.y = -5.0;
+  dropit.target_pose.pose.orientation.z = 0.0;
+  dropit.target_pose.pose.orientation.w = 0.4;
+  
    // Send the goal position and orientation for the robot to reach
   ROS_INFO("Sending to the location for dropping object");
   ac.sendGoal(dropit);

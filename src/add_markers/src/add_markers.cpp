@@ -3,7 +3,7 @@
 #include <visualization_msgs/Marker.h>
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/Pose.h>
-#include <nav_msgs/Odometry.h>
+#include <geometry_msgs/PoseWithCovarianceStamped.h>
 
 //adding geometry messages:
 geometry_msgs::Pose pick;
@@ -11,30 +11,36 @@ geometry_msgs::Pose dropit;
 
 //adding visualization:
 bool rStatus = true;
+bool rgrabbed = false;
 visualization_msgs::Marker marker;
 visualization_msgs::Marker rMarker;
 ros::Publisher marker_pub;
 
-//odom call back:
-void odomCallback(const nav_msgs::Odometry::ConstPtr& msg) {
+//amcl call back:
+void amclCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg) {
     
-    const bool rpick = (abs(pick.position.x - msg->pose.pose.position.x) + abs(pick.position.y - msg->pose.pose.position.y)) < 1;
-    const bool rdropit = (abs(dropit.position.x - msg->pose.pose.position.x) + abs(dropit.position.y - msg->pose.pose.position.y)) < 2;
+    const bool rpick = (abs(pick.position.x - msg->pose.pose.position.x) < 1) && (abs(pick.position.y - msg->pose.pose.position.y) < 1);
+    const bool rdropit = (abs(dropit.position.x - msg->pose.pose.position.x) <1) && (abs(dropit.position.y - msg->pose.pose.position.y) < 1);
   
 //conditional loop:  
   if(rStatus){
+        rStatus = false;
+        marker.action = visualization_msgs::Marker::ADD;
         marker_pub.publish(marker);
+        ROS_INFO("virtual object appears at pick location");
      }
 
-    if(rpick){
-        rStatus = false;
+    if(rpick && !rgrabbed){
         sleep(5);
+        ROS_INFO("virtual object is deleted from pick location");
         marker.action = visualization_msgs::Marker::DELETE;
         marker_pub.publish(marker);
+        rgrabbed = true;
     	}
-    else if(rdropit){
+  
+    if(rdropit && rgrabbed){
         sleep(5);
-        rMarker.action = visualization_msgs::Marker::ADD;
+        ROS_INFO("virtual object appears at drop location");
         marker_pub.publish(rMarker);
     }
 }
@@ -50,13 +56,13 @@ int main( int argc, char** argv )
   marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 
   //adding position cordinates for pickup and drop locations:
-  pick.position.x = -3.5; // ## x cord of pick loc
-  pick.position.y = -5.5; // ## y cord of pick loc
-  dropit.position.x = -1.2; // ## x cord of drop loc
-  dropit.position.y = -1.6; // ## y cord of drop loc
+  pick.position.x = 1.0; // ## x cord of pick loc
+  pick.position.y = -5.0; // ## y cord of pick loc
+  dropit.position.x = -5.0; // ## x cord of drop loc
+  dropit.position.y = -5.0; // ## y cord of drop loc
   
   //adding subscriber comm:
-  ros::Subscriber marker_sub = n.subscribe("/odom",1000,odomCallback);
+  ros::Subscriber marker_sub = n.subscribe("/amcl_pose",1000,amclCallback);
   
   // Set our initial shape type to be a cube
   uint32_t shape = visualization_msgs::Marker::SPHERE;
@@ -74,12 +80,12 @@ int main( int argc, char** argv )
   marker.type = shape;
   
   // Set the marker action.  Options are ADD, DELETE, and new in ROS Indigo: 3 (DELETEALL)
-  marker.action = visualization_msgs::Marker::ADD;
+  //marker.action = visualization_msgs::Marker::ADD;
   
   // Set the scale of the marker -- 1x1x1 here means 1m on a side
-  marker.scale.x = 0.25;
-  marker.scale.y = 0.25;
-  marker.scale.z = 0.25;
+  marker.scale.x = 1.0;
+  marker.scale.y = 1.0;
+  marker.scale.z = 1.0;
 
   // Set the color -- be sure to set alpha to something non-zero!
   marker.color.r = 0.0f;
@@ -98,8 +104,6 @@ int main( int argc, char** argv )
   rMarker.pose.position.x = dropit.position.x;
   rMarker.pose.position.y = dropit.position.y;
   
-  
-  marker_pub.publish(marker);
   
   //while loop:
   

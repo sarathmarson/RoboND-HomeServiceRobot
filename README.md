@@ -1,5 +1,6 @@
 # RoboND-HomeServiceRobot
-This is the final project of Udacity Nano Degree Program Robotics Software Engineer. 
+
+This is the final project of Udacity Nano Degree Program Robotics Software Engineer. The main objective of this project is to program a robot in the environment created in the previous project, to pick up a virtual object from a particular location and drop it in another location. 
 
 ## Final Output:
 
@@ -39,7 +40,7 @@ The commands in this file is executed by:
    
          The goal of this step is to manually test SLAM. This script will deploy a turtlebot inside our environment, control it with keyboard commands, interface it with a SLAM package, and visualize the map in rviz.
           
-         execution of this shell script is similar to that of launch.sh file we seen ealier.
+         execution of this shell script is similar to that of launch.sh file we seen earlier.
     
    3. test_navigation.sh
    
